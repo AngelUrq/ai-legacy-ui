@@ -64,7 +64,16 @@
       "downloadsAvailable": true,
       "index": "submissions-2022-09-30-06-07",
       "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "scores": []
+      "scores": [
+        {
+          "id": 19690031539,
+          "score": 20
+        },
+        {
+          "id": 19690036666,
+          "score": 5
+        }
+      ]
     },
     {
       "copyright": {
@@ -223,7 +232,16 @@
       "downloadsAvailable": true,
       "index": "submissions-2022-09-30-06-07",
       "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "scores": []
+      "scores": [
+        {
+          "id": 19690031539,
+          "score": 19
+        },
+        {
+          "id": 19690031546,
+          "score": 10
+        }
+      ]
     },
     {
       "copyright": {
@@ -296,7 +314,16 @@
       "downloadsAvailable": true,
       "index": "submissions-2022-09-30-06-07",
       "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "scores": []
+      "scores": [
+        {
+          "id": 19690031423,
+          "score": 19
+        },
+        {
+          "id": 19690031546,
+          "score": 10
+        }
+      ]
     },
     {
       "copyright": {
@@ -366,7 +393,16 @@
       "downloadsAvailable": true,
       "index": "submissions-2022-09-30-06-07",
       "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "scores": []
+      "scores": [
+        {
+          "id": 19690036641,
+          "score": 10
+        },
+        {
+          "id": 19690036666,
+          "score": 20
+        }
+      ]
     },
     {
       "copyright": {
@@ -452,7 +488,12 @@
       "downloadsAvailable": true,
       "index": "submissions-2022-09-30-06-07",
       "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "scores": []
+      "scores": [
+        {
+          "id": 19690036641,
+          "score": 50
+        }
+      ]
     },
     {
       "copyright": {
@@ -512,7 +553,20 @@
       "downloadsAvailable": false,
       "index": "submissions-2022-09-30-06-07",
       "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "scores": []
+      "scores": [
+        {
+          "id": 19690031409,
+          "score": 20
+        },
+        {
+          "id": 19690031486,
+          "score": 5
+        },
+        {
+          "id": 19690031423,
+          "score": 10
+        }
+      ]
     },
     {
       "copyright": {
@@ -572,7 +626,16 @@
       "downloadsAvailable": false,
       "index": "submissions-2022-09-30-06-07",
       "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "scores": []
+      "scores": [
+        {
+          "id": 19690031539,
+          "score": 20
+        },
+        {
+          "id": 19690036666,
+          "score": 5
+        }
+      ]
     }
   ]
 }

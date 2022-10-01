@@ -21,3 +21,7 @@ export function createPlanet(texture, textureLoader) {
 export function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+export function getNodePositionById(documentId, nodes) {
+  return nodes.filter((node) => node.documentId == documentId)[0].mesh.position;
+}
