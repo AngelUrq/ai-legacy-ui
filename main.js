@@ -1,6 +1,9 @@
 import './style.css'
 import javascriptLogo from './javascript.svg'
 import { setupCounter } from './counter.js'
+import * as THREE from 'three';
+
+const scene = new THREE.Scene();
 
 document.querySelector('#app').innerHTML = `
   <div>
