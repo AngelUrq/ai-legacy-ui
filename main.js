@@ -1,7 +1,5 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
-import * as THREE from 'three';
+import "./style.css";
+import * as THREE from "three";
 
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
@@ -26,6 +24,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
+
 
 const camera = new THREE.PerspectiveCamera(
     45,
