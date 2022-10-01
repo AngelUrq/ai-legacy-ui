@@ -72,14 +72,25 @@ const sunMat = new THREE.MeshBasicMaterial({
 const sun = new THREE.Mesh(sunGeo, sunMat);
 scene.add(sun);
 
-for (let index = 0; index < 50; index++) {
-  const planet = createPlanet(textures, textureLoader);
+for (let index = 0; index < 1; index++) {
+  const pdfData = {
+    "documents": {
+      "title": "titulo 1",
+      "summary": "sumarry",
+      "id": "105061650",
+      "downloads": {
+        "links": {
+          "pdf": "dasd"
+        }
+      },
+      "Keywords": ["abas", "asdasd"]
+    }
+  }
+  const planet = createPlanet(textures, textureLoader, pdfData);
   planets.push(planet);
+  console.log(planet.mesh.userData.title)
   scene.add(planet.obj);
 }
-
-const mars = createPlanet(textures, textureLoader);
-scene.add(mars.obj);
 
 const pointLight = new THREE.PointLight(0xffffff, 2, 500);
 scene.add(pointLight);
