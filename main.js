@@ -72,11 +72,18 @@ const sunMat = new THREE.MeshBasicMaterial({
 const sun = new THREE.Mesh(sunGeo, sunMat);
 scene.add(sun);
 
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+const points = [];
+
 for (let index = 0; index < 50; index++) {
   const planet = createPlanet(textures, textureLoader);
   planets.push(planet);
   scene.add(planet.obj);
 }
+
+const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+const line = new THREE.Line(lineGeometry, lineMaterial);
+scene.add(line);
 
 const mars = createPlanet(textures, textureLoader);
 scene.add(mars.obj);
