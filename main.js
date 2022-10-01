@@ -4,7 +4,7 @@ import config from "./db.json";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { createPlanet, getNodePositionById, getRandom } from "./helpers";
-import starsTexture from "./img/stars.jpg";
+import starsTexture from "./img/sky.jpg";
 import sunTexture from "./img/sun.jpg";
 import mercuryTexture from "./img/mercury.jpg";
 import venusTexture from ".//img/venus.jpg";
@@ -40,7 +40,7 @@ document.body.appendChild(renderer.domElement);
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(
-  75,
+  45,
   sizes.width / sizes.height,
   0.1,
   1000
