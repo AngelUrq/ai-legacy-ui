@@ -89,7 +89,7 @@ export function createPlanet(texture, textureLoader,pdfData) {
 
   mesh.position.x = getRandom(-500, 500);
   mesh.position.y = getRandom(-500, 500);
-  mesh.position.z = getRandom(-500, 500);
+  mesh.position.z = 0
 
   return { mesh, obj };
 }
