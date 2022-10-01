@@ -1,0 +1,578 @@
+{
+  "documents": [
+    {
+      "copyright": "GOV_PUBLIC_USE_PERMITTED",
+      "subjectCategories": ["INSTRUMENTATION AND PHOTOGRAPHY"],
+      "distributionDate": "2019-06-17T00:00:00.0000000+00:00",
+      "otherReportNumbers": ["TM-69-1022-3", "NASA-CR-106457"],
+      "fundingNumbers": [{ "number": "NASW-417", "type": "CONTRACT_GRANT" }],
+      "title": "Dynamic distortion of a gimbaled telescope",
+      "stiType": "CONTRACTOR_REPORT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2013-08-05T00:20:00.0000000+00:00",
+      "authorAffiliations": [
+        {
+          "sequence": 0,
+          "submissionId": 19690031409,
+          "meta": {
+            "author": { "name": "Anderson, G. M." },
+            "organization": {
+              "name": "Bellcomm, Inc.",
+              "location": "Washington, DC, United States"
+            }
+          },
+          "id": "f9deee32a6964e29848763416a27b3c3"
+        }
+      ],
+      "stiTypeDetails": "Contractor Report (CR)",
+      "technicalReviewType": "TECHNICAL_REVIEW_TYPE_NONE",
+      "modified": "2013-04-09T00:00:00.0000000+00:00",
+      "id": 19690031409,
+      "created": "2013-08-05T00:20:00.0000000+00:00",
+      "center": {
+        "code": "CDMS",
+        "name": "Legacy CDMS",
+        "id": "092d6e0881874968859b972d39a888dc"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "Dynamic distortion of gimbaled telescope",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "publications": [
+        {
+          "submissionId": 19690031409,
+          "id": "38255f892641493e889df0316848e97d",
+          "publicationDate": "1969-05-21T00:00:00.0000000+00:00"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "19690031409.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/19690031409/downloads/19690031409.pdf",
+            "pdf": "/api/citations/19690031409/downloads/19690031409.pdf",
+            "fulltext": "/api/citations/19690031409/downloads/19690031409.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2022-09-30-06-07",
+      "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "scores": []
+    },
+    {
+      "copyright": {
+        "licenseType": "NO",
+        "determinationType": "GOV_PUBLIC_USE_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET"
+      },
+      "subjectCategories": ["INSTRUMENTATION AND PHOTOGRAPHY"],
+      "exportControl": { "isExportControl": "NO", "ear": "NO", "itar": "NO" },
+      "distributionDate": "2019-06-17T00:00:00.0000000+00:00",
+      "otherReportNumbers": ["NASA-TN-D-5515"],
+      "fundingNumbers": [
+        { "number": "039-00-00-00-72", "type": "CONTRACT_GRANT" }
+      ],
+      "title": "The effect of object motion in Fraunhofer holography with application to velocity measurements",
+      "stiType": "OTHER",
+      "distribution": "PUBLIC",
+      "submittedDate": "2013-09-02T10:39:00.0000000+00:00",
+      "authorAffiliations": [
+        {
+          "sequence": 0,
+          "submissionId": 19690031423,
+          "meta": {
+            "author": { "name": "Dotson, W. P., Jr." },
+            "organization": {
+              "name": "NASA Lyndon B. Johnson Space Center",
+              "location": "Houston, TX, United States"
+            }
+          },
+          "id": "017c3f010f4241c3b8f0bab140f785c4"
+        }
+      ],
+      "stiTypeDetails": "Other - NASA Technical Note (TN)",
+      "technicalReviewType": "TECHNICAL_REVIEW_TYPE_NONE",
+      "modified": "2013-08-29T00:00:00.0000000+00:00",
+      "id": 19690031423,
+      "created": "2013-09-02T10:39:00.0000000+00:00",
+      "center": {
+        "code": "CDMS",
+        "name": "Legacy CDMS",
+        "id": "092d6e0881874968859b972d39a888dc"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "Object motion effect in Fraunhofer holography with application to velocity measurements",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "publications": [
+        {
+          "submissionId": 19690031423,
+          "id": "adae572b185b429380d5965b8ea92067",
+          "publicationDate": "1969-11-01T00:00:00.0000000+00:00"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "19690031423.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/19690031423/downloads/19690031423.pdf",
+            "pdf": "/api/citations/19690031423/downloads/19690031423.pdf",
+            "fulltext": "/api/citations/19690031423/downloads/19690031423.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2022-09-30-06-07",
+      "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "scores": []
+    },
+    {
+      "copyright": {
+        "licenseType": "NO",
+        "determinationType": "GOV_PUBLIC_USE_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET"
+      },
+      "subjectCategories": ["PROPULSION SYSTEMS"],
+      "exportControl": { "isExportControl": "NO", "ear": "NO", "itar": "NO" },
+      "distributionDate": "2019-06-17T00:00:00.0000000+00:00",
+      "otherReportNumbers": ["NASA-CR-106366", "MCR-68-119-PT-1"],
+      "fundingNumbers": [
+        { "number": "JPL-951709", "type": "CONTRACT_GRANT" },
+        { "number": "NAS7-100", "type": "CONTRACT_GRANT" }
+      ],
+      "title": "Sterilizable Liquid Propulsion System, Part 1 Final Report, 5 Oct. 1966 - 31 Mar. 1968",
+      "stiType": "CONTRACTOR_REPORT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2013-08-05T00:20:00.0000000+00:00",
+      "authorAffiliations": [
+        {
+          "sequence": 0,
+          "submissionId": 19690031454,
+          "meta": {
+            "author": { "name": "Brady, F." },
+            "organization": {
+              "name": "Jet Propulsion Lab., California Inst. of Tech.",
+              "location": "Pasadena, CA, United States"
+            }
+          },
+          "id": "5d226905ce0543fba4804d2b1c5e1243"
+        },
+        {
+          "sequence": 1,
+          "submissionId": 19690031454,
+          "meta": {
+            "author": { "name": "Di Stefano, D." },
+            "organization": {
+              "name": "Jet Propulsion Lab., California Inst. of Tech.",
+              "location": "Pasadena, CA, United States"
+            }
+          },
+          "id": "bf097cc49bf44a99b59cc02d4331d691"
+        }
+      ],
+      "stiTypeDetails": "Contractor Report (CR)",
+      "technicalReviewType": "TECHNICAL_REVIEW_TYPE_NONE",
+      "modified": "2014-05-08T00:00:00.0000000+00:00",
+      "id": 19690031454,
+      "created": "2013-08-05T00:20:00.0000000+00:00",
+      "center": {
+        "code": "CDMS",
+        "name": "Legacy CDMS",
+        "id": "092d6e0881874968859b972d39a888dc"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "Exposure of assembled and fueled bipropellant liquid propulsion system to ethylene oxide",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "publications": [
+        {
+          "submissionId": 19690031454,
+          "id": "68eecd0778544b8198dc3aaf0d99b685",
+          "publicationDate": "1968-08-01T00:00:00.0000000+00:00"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "19690031454.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/19690031454/downloads/19690031454.pdf",
+            "pdf": "/api/citations/19690031454/downloads/19690031454.pdf",
+            "fulltext": "/api/citations/19690031454/downloads/19690031454.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2022-09-30-06-07",
+      "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "scores": []
+    },
+    {
+      "copyright": {
+        "licenseType": "NO",
+        "determinationType": "GOV_PUBLIC_USE_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET"
+      },
+      "subjectCategories": ["PHYSICS, GENERAL"],
+      "exportControl": { "isExportControl": "NO", "ear": "NO", "itar": "NO" },
+      "distributionDate": "2019-06-17T00:00:00.0000000+00:00",
+      "otherReportNumbers": ["NASA-CR-106404"],
+      "fundingNumbers": [
+        { "number": "NGR-05-009-079", "type": "CONTRACT_GRANT" }
+      ],
+      "title": "Resolvability of objects from the standpoint of statistical parameter estimation",
+      "stiType": "CONTRACTOR_REPORT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2013-08-05T00:21:00.0000000+00:00",
+      "authorAffiliations": [
+        {
+          "sequence": 0,
+          "submissionId": 19690031486,
+          "meta": {
+            "author": { "name": "Helstrom, C. W." },
+            "organization": {
+              "name": "California Univ.",
+              "location": "La Jolla, CA, United States"
+            }
+          },
+          "id": "6dfe41caa25f4b1f87437fba2eda1c99"
+        }
+      ],
+      "stiTypeDetails": "Contractor Report (CR)",
+      "technicalReviewType": "TECHNICAL_REVIEW_TYPE_NONE",
+      "modified": "2013-04-09T00:00:00.0000000+00:00",
+      "id": 19690031486,
+      "created": "2013-08-05T00:21:00.0000000+00:00",
+      "center": {
+        "code": "CDMS",
+        "name": "Legacy CDMS",
+        "id": "092d6e0881874968859b972d39a888dc"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "Radiance estimation and object resolvability by statistical parameter analysis of aperture field",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "publications": [
+        {
+          "submissionId": 19690031486,
+          "id": "23d7208f227b446f80256f9e75fb86e0",
+          "publicationDate": "1969-01-01T00:00:00.0000000+00:00"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "19690031486.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/19690031486/downloads/19690031486.pdf",
+            "pdf": "/api/citations/19690031486/downloads/19690031486.pdf",
+            "fulltext": "/api/citations/19690031486/downloads/19690031486.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2022-09-30-06-07",
+      "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "scores": []
+    },
+    {
+      "copyright": {
+        "licenseType": "NO",
+        "determinationType": "GOV_PUBLIC_USE_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET"
+      },
+      "subjectCategories": ["AERODYNAMICS"],
+      "exportControl": { "isExportControl": "NO", "ear": "NO", "itar": "NO" },
+      "distributionDate": "2019-06-17T00:00:00.0000000+00:00",
+      "otherReportNumbers": ["NASA-TM-X-61907"],
+      "title": "Determination of the shape and inertial properties of an all-flexible parawing",
+      "stiType": "TECHNICAL_MEMORANDUM",
+      "distribution": "PUBLIC",
+      "submittedDate": "2013-09-02T10:39:00.0000000+00:00",
+      "authorAffiliations": [
+        {
+          "sequence": 0,
+          "submissionId": 19690031539,
+          "meta": {
+            "author": { "name": "Gloss, B. B." },
+            "organization": {
+              "name": "NASA Langley Research Center",
+              "location": "Hampton, VA, United States"
+            }
+          },
+          "id": "2932225f1697494ca30b232e7d1a29fa"
+        }
+      ],
+      "stiTypeDetails": "Technical Memorandum (TM)",
+      "technicalReviewType": "TECHNICAL_REVIEW_TYPE_NONE",
+      "modified": "2013-08-29T00:00:00.0000000+00:00",
+      "id": 19690031539,
+      "created": "2013-09-02T10:39:00.0000000+00:00",
+      "center": {
+        "code": "CDMS",
+        "name": "Legacy CDMS",
+        "id": "092d6e0881874968859b972d39a888dc"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "Shape data and varying lift drag ratios for all-flexible parawing system moments of inertia and center of gravity locations",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "publications": [
+        {
+          "submissionId": 19690031539,
+          "id": "fddc036d933040efb275a95324b86f13",
+          "publicationDate": "1969-05-01T00:00:00.0000000+00:00"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "19690031539.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/19690031539/downloads/19690031539.pdf",
+            "pdf": "/api/citations/19690031539/downloads/19690031539.pdf",
+            "fulltext": "/api/citations/19690031539/downloads/19690031539.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2022-09-30-06-07",
+      "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "scores": []
+    },
+    {
+      "copyright": {
+        "licenseType": "NO",
+        "determinationType": "GOV_PUBLIC_USE_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET"
+      },
+      "subjectCategories": ["STRUCTURAL MECHANICS"],
+      "exportControl": { "isExportControl": "NO", "ear": "NO", "itar": "NO" },
+      "distributionDate": "2019-06-17T00:00:00.0000000+00:00",
+      "otherReportNumbers": ["NASA-CR-1437"],
+      "fundingNumbers": [
+        { "number": "NGR-34-002-035", "type": "CONTRACT_GRANT" }
+      ],
+      "title": "The radiation resistance of cylindrical shells",
+      "stiType": "CONTRACTOR_REPORT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2013-08-05T00:21:00.0000000+00:00",
+      "authorAffiliations": [
+        {
+          "sequence": 0,
+          "submissionId": 19690031546,
+          "meta": {
+            "author": { "name": "Hart, F. D." },
+            "organization": {
+              "name": "North Carolina State Univ.",
+              "location": "Raleigh, NC, United States"
+            }
+          },
+          "id": "f957c2f70d174272b0d0f5aab53e8bb2"
+        },
+        {
+          "sequence": 1,
+          "submissionId": 19690031546,
+          "meta": {
+            "author": { "name": "Runkle, C. J." },
+            "organization": {
+              "name": "North Carolina State Univ.",
+              "location": "Raleigh, NC, United States"
+            }
+          },
+          "id": "06b1197ecca14d4187ab13278633364a"
+        }
+      ],
+      "stiTypeDetails": "Contractor Report (CR)",
+      "technicalReviewType": "TECHNICAL_REVIEW_TYPE_NONE",
+      "modified": "2013-04-09T00:00:00.0000000+00:00",
+      "id": 19690031546,
+      "created": "2013-08-05T00:21:00.0000000+00:00",
+      "center": {
+        "code": "CDMS",
+        "name": "Legacy CDMS",
+        "id": "092d6e0881874968859b972d39a888dc"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "Radiation resistance of cylindrical shells in ideal compressible acoustic medium",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "publications": [
+        {
+          "submissionId": 19690031546,
+          "publisher": "NASA",
+          "id": "d5b1c753d9a44d91837fcc6450b82470",
+          "publicationDate": "1969-10-01T00:00:00.0000000+00:00"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "19690031546.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/19690031546/downloads/19690031546.pdf",
+            "pdf": "/api/citations/19690031546/downloads/19690031546.pdf",
+            "fulltext": "/api/citations/19690031546/downloads/19690031546.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2022-09-30-06-07",
+      "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "scores": []
+    },
+    {
+      "copyright": {
+        "licenseType": "NO",
+        "determinationType": "OTHER",
+        "thirdPartyContentCondition": "NOT_SET"
+      },
+      "subjectCategories": ["SPACE SCIENCES"],
+      "exportControl": { "isExportControl": "NO", "ear": "NO", "itar": "NO" },
+      "created": "2013-08-05T00:42:00.0000000+00:00",
+      "distributionDate": "2011-08-11T00:00:00.0000000+00:00",
+      "center": {
+        "code": "CDMS",
+        "name": "Legacy CDMS",
+        "id": "092d6e0881874968859b972d39a888dc"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "Lunar mascons, interpreting lunar gravitational field anomalies over maria in terms of near- surface slab-like model for maria structure",
+      "title": "Lunar mascons - A near-surface interpretation.",
+      "stiType": "REPRINT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2013-08-05T00:42:00.0000000+00:00",
+      "isLessonsLearned": false,
+      "authorAffiliations": [
+        {
+          "sequence": 0,
+          "submissionId": 19690036641,
+          "meta": { "author": { "name": "Conel, J. E." }, "organization": {} },
+          "id": "6d2532eb0d1243f8a0437f3d52ca81dd"
+        },
+        {
+          "sequence": 1,
+          "submissionId": 19690036641,
+          "meta": {
+            "author": { "name": "Holstrom, G. B." },
+            "organization": {}
+          },
+          "id": "ab27a6f56c6e4453a5f0fac4cd889ee9"
+        }
+      ],
+      "disseminated": "METADATA_ONLY",
+      "stiTypeDetails": "Reprint (Version printed in journal)",
+      "technicalReviewType": "TECHNICAL_REVIEW_TYPE_NONE",
+      "modified": "2011-08-11T00:00:00.0000000+00:00",
+      "id": 19690036641,
+      "publications": [
+        {
+          "submissionId": 19690036641,
+          "id": "0a8682b49fac47bdbecf579ce6bfc645",
+          "publicationDate": "1968-12-20T00:00:00.0000000+00:00"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [],
+      "downloadsAvailable": false,
+      "index": "submissions-2022-09-30-06-07",
+      "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "scores": []
+    },
+    {
+      "copyright": {
+        "licenseType": "NO",
+        "determinationType": "OTHER",
+        "thirdPartyContentCondition": "NOT_SET"
+      },
+      "subjectCategories": ["SPACE SCIENCES"],
+      "exportControl": { "isExportControl": "NO", "ear": "NO", "itar": "NO" },
+      "created": "2013-08-05T00:42:00.0000000+00:00",
+      "distributionDate": "2019-06-17T00:00:00.0000000+00:00",
+      "center": {
+        "code": "CDMS",
+        "name": "Legacy CDMS",
+        "id": "092d6e0881874968859b972d39a888dc"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "fundingNumbers": [
+        { "number": "NGR-48-002-033", "type": "CONTRACT_GRANT" }
+      ],
+      "abstract": "Satellite data for reevaluating extraterrestrial particles origin found in polar ice, atmosphere and terrestrial surface collections",
+      "title": "Studies of particles for extraterrestrial origin.  VI - Comparisons of previous influx estimates and present satellite flux data.",
+      "stiType": "REPRINT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2013-08-05T00:42:00.0000000+00:00",
+      "isLessonsLearned": false,
+      "authorAffiliations": [
+        {
+          "sequence": 0,
+          "submissionId": 19690036666,
+          "meta": { "author": { "name": "Hodge, P. W." }, "organization": {} },
+          "id": "48092529f71e4661bda00969ea8a8597"
+        },
+        {
+          "sequence": 1,
+          "submissionId": 19690036666,
+          "meta": { "author": { "name": "Wright, F. W." }, "organization": {} },
+          "id": "668b4237bc4341b6bfb1c46c963b8cf0"
+        }
+      ],
+      "disseminated": "METADATA_ONLY",
+      "stiTypeDetails": "Reprint (Version printed in journal)",
+      "technicalReviewType": "TECHNICAL_REVIEW_TYPE_NONE",
+      "modified": "2011-08-11T00:00:00.0000000+00:00",
+      "id": 19690036666,
+      "publications": [
+        {
+          "submissionId": 19690036666,
+          "id": "1767055742874972814e3ed8bec80bfa",
+          "publicationDate": "1968-12-15T00:00:00.0000000+00:00"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [],
+      "downloadsAvailable": false,
+      "index": "submissions-2022-09-30-06-07",
+      "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "scores": []
+    }
+  ]
+}

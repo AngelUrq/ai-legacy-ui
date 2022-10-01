@@ -1,5 +1,6 @@
 import "./style.css";
 import * as THREE from "three";
+import config from "./db.json";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { createPlanet, getRandom } from "./helpers";
@@ -70,8 +71,10 @@ const sunMat = new THREE.MeshBasicMaterial({
   map: textureLoader.load(sunTexture),
 });
 const sun = new THREE.Mesh(sunGeo, sunMat);
+sun.position.x = 10
 scene.add(sun);
-
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+const points = [];
 for (let index = 0; index < 1; index++) {
   const pdfData = {
     "documents": {
@@ -92,6 +95,13 @@ for (let index = 0; index < 1; index++) {
   scene.add(planet.obj);
 }
 
+const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+const line = new THREE.Line(lineGeometry, lineMaterial);
+scene.add(line);
+
+const mars = createPlanet(textures, textureLoader);
+scene.add(mars.obj);
+
 const pointLight = new THREE.PointLight(0xffffff, 2, 500);
 scene.add(pointLight);
 
@@ -104,6 +114,22 @@ function animate() {
 }
 
 renderer.setAnimationLoop(animate);
+const raycaster = new THREE.Raycaster();
+const clickMouse = new THREE.Vector2();
+const moveMouse = new THREE.Vector2();
+
+window.addEventListener('click', event => {
+  clickMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+  clickMouse.y = ( event.clientY / window.innerHeight ) * 2 - 1;
+
+  raycaster.setFromCamera( clickMouse, camera);
+  const found = raycaster.intersectObjects( scene.children);
+  if (found.length > 0 ) {
+    console.log("id "); //found[0].object.userData.id);
+    console.log(found[0].object.userData)
+  }
+})
+
 
 window.addEventListener("resize", function () {
   sizes.width = window.innerWidth;
