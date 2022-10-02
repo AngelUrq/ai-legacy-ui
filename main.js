@@ -1,7 +1,7 @@
 import "./style.css";
 import * as THREE from "three";
 import config from "./db.json";
-import { FlyControls } from 'three/examples/jsm/controls/FlyControls'
+import { FlyControls } from "three/examples/jsm/controls/FlyControls";
 
 import { createPlanet, getNodePositionById, getRandom } from "./helpers";
 import starsTexture from "./img/sky.jpg";
@@ -72,7 +72,7 @@ const sunMat = new THREE.MeshBasicMaterial({
   map: textureLoader.load(sunTexture),
 });
 const sun = new THREE.Mesh(sunGeo, sunMat);
-sun.position.x = 10
+sun.position.x = 10;
 scene.add(sun);
 const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
 const documents = config.documents;
@@ -84,7 +84,7 @@ for (let index = 0; index < documents.length; index++) {
   planet.documentId = documents[index].id;
   planet.scores = documents[index].scores;
   planets.push(planet);
-  console.log(planet.mesh.userData.title)
+  //console.log(planet.mesh.userData.title);
   scene.add(planet.obj);
 }
 
@@ -94,8 +94,10 @@ for (let j = 0; j < planets.length; j++) {
   points.push(planets[j].mesh.position);
 
   for (let k = 0; k < scores.length; k++) {
-    const point = getNodePositionById(scores[k].id, planets);
-    points.push(point);
+    if (scores[k].score < 0.3) {
+      const point = getNodePositionById(scores[k].id, planets);
+      points.push(point);
+    }
   }
 
   const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -116,11 +118,11 @@ function animate() {
     planet.mesh.rotateY(getRandom(1, 10) / 1000);
   });
   var now = new Date(),
-         secs = (now - lt) / 1000;
-         lt = now;
-       // requestAnimationFrame(loop);
-        // UPDATE CONTROLS
-        flyControls.update(1 * secs);
+    secs = (now - lt) / 1000;
+  lt = now;
+  // requestAnimationFrame(loop);
+  // UPDATE CONTROLS
+  flyControls.update(1 * secs);
 
   renderer.render(scene, camera);
 }
@@ -130,23 +132,26 @@ const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
 const moveMouse = new THREE.Vector2();
 
-window.addEventListener('click', event => { 
+window.addEventListener("click", (event) => {
   const rect = renderer.domElement.getBoundingClientRect();
-  clickMouse.x = ((event.clientX - rect.left) / (rect.right - rect.left)) * 2 - 1;
-  clickMouse.y = - ((event.clientY - rect.top) / (rect.bottom - rect.top)) * 2 + 1;
+  clickMouse.x =
+    ((event.clientX - rect.left) / (rect.right - rect.left)) * 2 - 1;
+  clickMouse.y =
+    -((event.clientY - rect.top) / (rect.bottom - rect.top)) * 2 + 1;
   raycaster.setFromCamera(clickMouse, camera);
   const found = raycaster.intersectObjects(scene.children);
 
   if (found.length > 0) {
-    console.log("detect")
-    found.forEach(element => {    
-      element.object.userData.title &&console.log("id "); 
-      console.log(element)
+    console.log("detect");
+    found.forEach((element) => {
+      element.object.userData.title && console.log("id ");
+      console.log(element);
 
-      element.object.userData.title &&console.log(element.object.userData.title)
-    }); 
+      element.object.userData.title &&
+        console.log(element.object.userData.title);
+    });
   }
-})
+});
 
 window.addEventListener("resize", function () {
   sizes.width = window.innerWidth;
@@ -155,3 +160,29 @@ window.addEventListener("resize", function () {
   camera.updateProjectionMatrix();
   renderer.setSize(sizes.width, sizes.height);
 });
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};

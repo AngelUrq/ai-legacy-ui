@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/x-icon" href="/img/icon.ico" />
     <link
       rel="stylesheet"
       href="/static/font-awesome-4.7.0/css/font-awesome.min.css"
@@ -18,7 +18,8 @@
   </head>
   <body>
     <div class="searcher-container">
-      <h1 id="title">Space Legacy</h1>
+      <img id="logo" src="/img/logo.png" alt="Space legacy logo" />
+
       <form id="searcher-form">
         <input type="text" id="searcher" />
         <button id="search-button">
@@ -26,6 +27,16 @@
         </button>
       </form>
     </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
+    </div>
+
     <script type="module" src="/main.js"></script>
   </body>
 </html>
