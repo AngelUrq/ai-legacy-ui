@@ -104,23 +104,18 @@ for (let j = 0; j < planets.length; j++) {
   points = [];
 }
 
-const mars = createPlanet(textures, textureLoader);
-scene.add(mars.obj);
+
 
 const pointLight = new THREE.PointLight(0xffffff, 2, 500);
 scene.add(pointLight);
 var lt = new Date();
-
+var clock = new THREE.Clock();
 function animate() {
   planets.forEach((planet) => {
     planet.mesh.rotateY(getRandom(1, 10) / 1000);
   });
-  var now = new Date(),
-         secs = (now - lt) / 1000;
-         lt = now;
-       // requestAnimationFrame(loop);
-        // UPDATE CONTROLS
-        flyControls.update(1 * secs);
+  var delta = clock.getDelta();
+  flyControls.update(delta);
 
   renderer.render(scene, camera);
 }
@@ -130,7 +125,7 @@ const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
 const moveMouse = new THREE.Vector2();
 
-window.addEventListener('click', event => { 
+window.addEventListener('click', event => {
   const rect = renderer.domElement.getBoundingClientRect();
   clickMouse.x = ((event.clientX - rect.left) / (rect.right - rect.left)) * 2 - 1;
   clickMouse.y = - ((event.clientY - rect.top) / (rect.bottom - rect.top)) * 2 + 1;
@@ -139,12 +134,12 @@ window.addEventListener('click', event => {
 
   if (found.length > 0) {
     console.log("detect")
-    found.forEach(element => {    
-      element.object.userData.title &&console.log("id "); 
+    found.forEach(element => {
+      element.object.userData.title && console.log("id ");
       console.log(element)
 
-      element.object.userData.title &&console.log(element.object.userData.title)
-    }); 
+      element.object.userData.title && console.log(element.object.userData.title)
+    });
   }
 })
 
