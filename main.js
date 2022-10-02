@@ -1,9 +1,9 @@
 import "./style.css";
 import * as THREE from "three";
 import config from "./db.json";
-import { FlyControls } from 'three/examples/jsm/controls/FlyControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
-import { createPlanet, getNodePositionById, getRandom } from "./helpers";
+import { createPlanet, getNodePositionById, getRandom, isPlanetPainted } from "./helpers";
 import starsTexture from "./img/sky.jpg";
 import sunTexture from "./img/sun.jpg";
 import mercuryTexture from "./img/mercury.jpg";
@@ -39,18 +39,13 @@ document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(
-  45,
-  sizes.width / sizes.height,
-  0.1,
-  1000
-);
+const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 
-var flyControls = new FlyControls(camera, renderer.domElement);
-flyControls.dragToLook = true;
-flyControls.movementSpeed = 100;
-flyControls.rollSpeed = 1;
-camera.position.set(0, 0, 0);
+const controls = new OrbitControls( camera, renderer.domElement );
+
+//controls.update() must be called after any manual changes to the camera's transform
+camera.position.set( 0, 20, 100 );
+controls.update();
 
 const ambientLight = new THREE.AmbientLight(0x333333);
 scene.add(ambientLight);
@@ -80,12 +75,23 @@ const documents = config.documents;
 let points = [];
 
 for (let index = 0; index < documents.length; index++) {
-  const planet = createPlanet(textures, textureLoader);
-  planet.documentId = documents[index].id;
-  planet.scores = documents[index].scores;
-  planets.push(planet);
-  console.log(planet.mesh.userData.title)
-  scene.add(planet.obj);
+  let planet;
+  if(isPlanetPainted(documents[index].id,documents)) {
+    if (planets == []) {
+      planet = createPlanet(textures, textureLoader, new THREE.Vector3(getRandom(-50,50), getRandom(-50,50), getRandom(-50,50)));
+   } else {
+    if (documents[index].scores )
+    planet = createPlanet(textures, textureLoader, new THREE.Vector3(getRandom(-50,50), getRandom(-50,50), getRandom(-50,50)));
+   }
+   
+   planet.documentId = documents[index].id;
+   planet.scores = documents[index].scores;
+   planets.push(planet);
+   scene.add(planet.obj);
+
+  }
+  
+  
 }
 
 for (let j = 0; j < planets.length; j++) {
@@ -108,14 +114,12 @@ for (let j = 0; j < planets.length; j++) {
 
 const pointLight = new THREE.PointLight(0xffffff, 2, 500);
 scene.add(pointLight);
-var lt = new Date();
-var clock = new THREE.Clock();
+
 function animate() {
   planets.forEach((planet) => {
     planet.mesh.rotateY(getRandom(1, 10) / 1000);
   });
-  var delta = clock.getDelta();
-  flyControls.update(delta);
+
 
   renderer.render(scene, camera);
 }
@@ -123,7 +127,6 @@ function animate() {
 renderer.setAnimationLoop(animate);
 const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
-const moveMouse = new THREE.Vector2();
 
 window.addEventListener('click', event => {
   const rect = renderer.domElement.getBoundingClientRect();

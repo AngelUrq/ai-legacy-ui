@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export function createPlanet(texture, textureLoader,pdfData) {
+export function createPlanet(texture, textureLoader,pdfData, position) {
   const size = getRandom(5, 30);
 
   const geo = new THREE.SphereGeometry(size, 30, 30);
@@ -19,9 +19,9 @@ export function createPlanet(texture, textureLoader,pdfData) {
   }
   obj.add(mesh);
 
-  mesh.position.x = getRandom(-500, 500);
-  mesh.position.y = getRandom(-500, 500);
-  mesh.position.z = 0
+  mesh.position.x = position.x;
+  mesh.position.y = position.y;
+  mesh.position.z = position.z;
 
   return { mesh, obj };
 }
@@ -36,7 +36,9 @@ export function getNodePositionById(documentId, nodes) {
 
 export function isPlanetPainted(documentID, nodes){
     nodes.forEach(node => {
-        return node.documentId == documentID
+        if ( node.documentId == documentID ) {
+            return node;
+        }
         
     });
 }
