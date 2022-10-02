@@ -19,9 +19,9 @@ export function createPlanet(texture, textureLoader,pdfData, position) {
   }
   obj.add(mesh);
 
-  mesh.position.x = position.x;
-  mesh.position.y = position.y;
-  mesh.position.z = position.z;
+  mesh.position.x = getRandom(-500,500);
+  mesh.position.y = getRandom(-500,500);
+  mesh.position.z = getRandom(-500,500);
 
   return { mesh, obj };
 }
@@ -31,12 +31,12 @@ export function getRandom(min, max) {
 }
 
 export function getNodePositionById(documentId, nodes) {
-  return nodes.filter((node) => node.documentId == documentId)[0].mesh.position;
+  return nodes.filter((node) => node.mesh.userData.documentId == documentId)[0].mesh.position;
 }
 
 export function isPlanetPainted(documentID, nodes){
     nodes.forEach(node => {
-        if ( node.documentId == documentID ) {
+        if ( node.mesh.userData.documentId == documentID ) {
             return node;
         }
         

@@ -42,7 +42,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 
 const controls = new OrbitControls( camera, renderer.domElement );
-
+controls.target.set(0,0,0);
 //controls.update() must be called after any manual changes to the camera's transform
 camera.position.set( 0, 20, 100 );
 controls.update();
@@ -66,42 +66,31 @@ const sunGeo = new THREE.SphereGeometry(16, 30, 30);
 const sunMat = new THREE.MeshBasicMaterial({
   map: textureLoader.load(sunTexture),
 });
-const sun = new THREE.Mesh(sunGeo, sunMat);
-sun.position.x = 10
-scene.add(sun);
+
 const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
 const documents = config.documents;
 
 let points = [];
 
 for (let index = 0; index < documents.length; index++) {
-  let planet;
-  if(isPlanetPainted(documents[index].id,documents)) {
-    if (planets == []) {
-      planet = createPlanet(textures, textureLoader, new THREE.Vector3(getRandom(-50,50), getRandom(-50,50), getRandom(-50,50)));
-   } else {
-    if (documents[index].scores )
-    planet = createPlanet(textures, textureLoader, new THREE.Vector3(getRandom(-50,50), getRandom(-50,50), getRandom(-50,50)));
-   }
-   
-   planet.documentId = documents[index].id;
-   planet.scores = documents[index].scores;
-   planets.push(planet);
-   scene.add(planet.obj);
+  const planet = createPlanet(textures, textureLoader);
+  planet.mesh.userData.scores = documents[index].scores;
+  planet.mesh.userData.documentId=  documents[index].id;
 
-  }
-  
-  
+  planets.push(planet);
+  //console.log(planet.mesh.userData.title);
+  scene.add(planet.obj);
 }
 
 for (let j = 0; j < planets.length; j++) {
-  const scores = planets[j].scores;
-
+  const scores = planets[j].mesh.userData.scores;
   points.push(planets[j].mesh.position);
 
   for (let k = 0; k < scores.length; k++) {
-    const point = getNodePositionById(scores[k].id, planets);
-    points.push(point);
+    if (scores[k].score < 0.3) {
+      const point = getNodePositionById(scores[k].id, planets);
+      points.push(point);
+    }
   }
 
   const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -110,9 +99,8 @@ for (let j = 0; j < planets.length; j++) {
   points = [];
 }
 
-
-
 const pointLight = new THREE.PointLight(0xffffff, 2, 500);
+pointLight.position.set(300,0,0)
 scene.add(pointLight);
 
 function animate() {
@@ -128,23 +116,27 @@ renderer.setAnimationLoop(animate);
 const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
 
-window.addEventListener('click', event => {
-  const rect = renderer.domElement.getBoundingClientRect();
-  clickMouse.x = ((event.clientX - rect.left) / (rect.right - rect.left)) * 2 - 1;
-  clickMouse.y = - ((event.clientY - rect.top) / (rect.bottom - rect.top)) * 2 + 1;
-  raycaster.setFromCamera(clickMouse, camera);
+window.addEventListener("click", (event) => {
+  event.preventDefault();
+  var canvasBounds = renderer.domElement.getBoundingClientRect();
+
+  clickMouse.x = ( ( event - canvasBounds.left ) / ( canvasBounds.right - canvasBounds.left ) ) * 2 - 1;
+  clickMouse.y = - ( ( event.clientY - canvasBounds.top ) / ( canvasBounds.bottom - canvasBounds.top) ) * 2 + 1;
+
+  raycaster.setFromCamera(  {
+    x:  2*event.offsetX / event.target.clientWidth - 1,
+    y: -2*event.offsetY / event.target.clientHeight + 1 }, camera );
   const found = raycaster.intersectObjects(scene.children);
 
   if (found.length > 0) {
-    console.log("detect")
-    found.forEach(element => {
-      element.object.userData.title && console.log("id ");
-      console.log(element)
+    found.forEach((element) => {
+     
 
-      element.object.userData.title && console.log(element.object.userData.title)
+      element.object.userData.documentId &&
+        console.log(element.object.userData.documentId);
     });
   }
-})
+});
 
 window.addEventListener("resize", function () {
   sizes.width = window.innerWidth;
@@ -153,3 +145,29 @@ window.addEventListener("resize", function () {
   camera.updateProjectionMatrix();
   renderer.setSize(sizes.width, sizes.height);
 });
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
