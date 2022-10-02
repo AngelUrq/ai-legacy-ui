@@ -47,6 +47,11 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 const controls = new OrbitControls(camera, renderer.domElement);
+let normax;
+let normay;
+let normaz;
+let IsNewTarget = false;
+let targetPlanet;
 controls.target.set(0, 0, 0);
 camera.position.set(0, 20, 100);
 controls.update();
@@ -65,11 +70,6 @@ scene.background = cubeTextureLoader.load([
 ]);
 
 const textureLoader = new THREE.TextureLoader();
-
-const sunGeo = new THREE.SphereGeometry(16, 30, 30);
-const sunMat = new THREE.MeshBasicMaterial({
-  map: textureLoader.load(sunTexture),
-});
 
 const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
 const documents = config.documents;
@@ -116,6 +116,35 @@ function animate() {
     planet.mesh.rotateY(getRandom(1, 10) / 1000);
   });
 
+  if (IsNewTarget) {
+    camera.lookAt(targetPlanet);
+    camera.position.set(
+      camera.position.x + normax * 10,
+      camera.position.y + normay * 10,
+      camera.position.z + normaz * 10
+    );
+    const distance = Math.sqrt(
+      Math.pow(targetPlanet.x - camera.position.x, 2) +
+        Math.pow(targetPlanet.y - camera.position.y, 2) +
+        Math.pow(targetPlanet.z - camera.position.z, 2)
+    );
+
+    if (distance < 200) {
+      IsNewTarget = false;
+      controls.target.set(
+        targetPlanet.x,
+        targetPlanet.y,
+        targetPlanet.z + 0.01
+      );
+      camera.position.set(
+        camera.position.x,
+        camera.position.y,
+        camera.position.z - 200
+      );
+      camera.lookAt(targetPlanet);
+      targetPlanet = null;
+    }
+  }
   renderer.render(scene, camera);
 }
 
@@ -136,9 +165,7 @@ const DOWNLOAD_URL = "https://ntrs.nasa.gov";
 window.addEventListener("click", (event) => {
   event.preventDefault();
 
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+  if (event.target == modal) modal.style.display = "none";
 
   var canvasBounds = renderer.domElement.getBoundingClientRect();
 
@@ -165,7 +192,17 @@ window.addEventListener("click", (event) => {
 
   if (found.length > 0) {
     found.forEach((element) => {
-      element.object.userData.documentId;
+      if (element.object.userData.documentId) {
+        console.log(element);
+        normax =
+          (element.object.position.x - camera.position.x) / element.distance;
+        normay =
+          (element.object.position.y - camera.position.y) / element.distance;
+        normaz =
+          (element.object.position.z - camera.position.z) / element.distance;
+        targetPlanet = element.object.position;
+        IsNewTarget = true;
+      }
     });
 
     const paperData = found[0].object.userData;
@@ -210,7 +247,6 @@ const API_URL = "http://192.168.23.74:5000";
 const searchButton = document.getElementById("search-button");
 searchButton.onclick = function () {
   const query = document.getElementById("searcher").value;
-  console.log(query);
   let data = { query };
 
   fetch(API_URL, {
