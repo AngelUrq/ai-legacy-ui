@@ -106,23 +106,16 @@ for (let j = 0; j < planets.length; j++) {
   points = [];
 }
 
-const mars = createPlanet(textures, textureLoader);
-scene.add(mars.obj);
-
 const pointLight = new THREE.PointLight(0xffffff, 2, 500);
 scene.add(pointLight);
 var lt = new Date();
-
+var clock = new THREE.Clock();
 function animate() {
   planets.forEach((planet) => {
     planet.mesh.rotateY(getRandom(1, 10) / 1000);
   });
-  var now = new Date(),
-    secs = (now - lt) / 1000;
-  lt = now;
-  // requestAnimationFrame(loop);
-  // UPDATE CONTROLS
-  flyControls.update(1 * secs);
+  var delta = clock.getDelta();
+  flyControls.update(delta);
 
   renderer.render(scene, camera);
 }
