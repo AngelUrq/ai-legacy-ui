@@ -3,7 +3,12 @@ import * as THREE from "three";
 import config from "./db.json";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-import { createPlanet, getNodePositionById, getRandom } from "./helpers";
+import {
+  createPlanet,
+  eucDistance,
+  getNodePositionById,
+  getRandom,
+} from "./helpers";
 import starsTexture from "./img/sky.jpg";
 import sunTexture from "./img/sun.jpg";
 import mercuryTexture from "./img/mercury.jpg";
@@ -231,7 +236,7 @@ window.addEventListener("click", (event) => {
           <button class="btn-download" onclick="window.open('${url}', '_blank');">See</button>
         </div>
       `;
-    }, 1000 * 1)
+    }, 1000 * 1);
   }
 });
 
@@ -244,18 +249,37 @@ window.addEventListener("resize", function () {
 });
 
 /* Query */
-const API_URL = "http://192.168.23.74:5000";
+const API_URL = "http://192.168.23.78:5000";
 
 const searchButton = document.getElementById("search-button");
 searchButton.onclick = function () {
   const query = document.getElementById("searcher").value;
   let data = { query };
+  let distances = [];
 
   fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   }).then((res) => {
-    res.json().then((embeddings) => console.log(embeddings));
+    res.json().then((embedding) => {
+      documents.forEach((document) => {
+        let distance = eucDistance(embedding, document.embedding);
+        distances.push({
+          documentId: document.id,
+          value: distance,
+        });
+      });
+
+      let minDistanceDoc = distances[0];
+
+      for (let i = 1; i < distances.length; i++) {
+        if (minDistanceDoc.value > distances[i].value)
+          minDistanceDoc = distances[i];
+      }
+
+      // Move camera to node with id (minDistanceDoc.documentId)
+      console.log(minDistanceDoc);
+    });
   });
 };

@@ -29,7 +29,8 @@ form {
 
 #searcher {
   border-radius: 10px;
-  font-size: 1.5rem;
+  width: 30%;
+  font-size: 1.1rem;
 }
 
 #search-button {
