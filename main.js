@@ -39,12 +39,17 @@ document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
 
-const controls = new OrbitControls( camera, renderer.domElement );
-controls.target.set(0,0,0);
+const controls = new OrbitControls(camera, renderer.domElement);
+let normax;
+let normay;
+let normaz;
+let IsNewTarget = false;
+let targetPlanet;
+controls.target.set(0, 0, 0);
 //controls.update() must be called after any manual changes to the camera's transform
-camera.position.set( 0, 20, 100 );
+camera.position.set(0, 20, 100);
 controls.update();
 
 const ambientLight = new THREE.AmbientLight(0x333333);
@@ -62,10 +67,6 @@ scene.background = cubeTextureLoader.load([
 
 const textureLoader = new THREE.TextureLoader();
 
-const sunGeo = new THREE.SphereGeometry(16, 30, 30);
-const sunMat = new THREE.MeshBasicMaterial({
-  map: textureLoader.load(sunTexture),
-});
 
 const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
 const documents = config.documents;
@@ -75,10 +76,9 @@ let points = [];
 for (let index = 0; index < documents.length; index++) {
   const planet = createPlanet(textures, textureLoader);
   planet.mesh.userData.scores = documents[index].scores;
-  planet.mesh.userData.documentId=  documents[index].id;
+  planet.mesh.userData.documentId = documents[index].id;
 
   planets.push(planet);
-  //console.log(planet.mesh.userData.title);
   scene.add(planet.obj);
 }
 
@@ -100,14 +100,29 @@ for (let j = 0; j < planets.length; j++) {
 }
 
 const pointLight = new THREE.PointLight(0xffffff, 2, 500);
-pointLight.position.set(300,0,0)
+pointLight.position.set(300, 0, 0)
 scene.add(pointLight);
 
 function animate() {
   planets.forEach((planet) => {
     planet.mesh.rotateY(getRandom(1, 10) / 1000);
   });
+  if (IsNewTarget) {
+    camera.lookAt(targetPlanet)
+    camera.position.set(camera.position.x + normax*10, camera.position.y + normay*10, camera.position.z + normaz*10)
+    //console.log(camera.position.x)
+    //console.log(targetPlanet.x)
+    const distance =  Math.sqrt( Math.pow((targetPlanet.x-camera.position.x), 2) + Math.pow((targetPlanet.y-camera.position.y), 2) + Math.pow(((targetPlanet.z-camera.position.z)), 2) );
+    console.log(distance)
+    if (distance < 200) {
+      IsNewTarget = false;
+      controls.target.set(targetPlanet.x, targetPlanet.y, targetPlanet.z + 0.01);
+      camera.position.set(camera.position.x , camera.position.y, camera.position.z -200)
+      camera.lookAt(targetPlanet);
+      targetPlanet = null;
 
+    }
+  }
 
   renderer.render(scene, camera);
 }
@@ -120,20 +135,35 @@ window.addEventListener("click", (event) => {
   event.preventDefault();
   var canvasBounds = renderer.domElement.getBoundingClientRect();
 
-  clickMouse.x = ( ( event - canvasBounds.left ) / ( canvasBounds.right - canvasBounds.left ) ) * 2 - 1;
-  clickMouse.y = - ( ( event.clientY - canvasBounds.top ) / ( canvasBounds.bottom - canvasBounds.top) ) * 2 + 1;
+  clickMouse.x = ((event - canvasBounds.left) / (canvasBounds.right - canvasBounds.left)) * 2 - 1;
+  clickMouse.y = - ((event.clientY - canvasBounds.top) / (canvasBounds.bottom - canvasBounds.top)) * 2 + 1;
 
-  raycaster.setFromCamera(  {
-    x:  2*event.offsetX / event.target.clientWidth - 1,
-    y: -2*event.offsetY / event.target.clientHeight + 1 }, camera );
+  raycaster.setFromCamera({
+    x: 2 * event.offsetX / event.target.clientWidth - 1,
+    y: -2 * event.offsetY / event.target.clientHeight + 1
+  }, camera);
   const found = raycaster.intersectObjects(scene.children);
 
   if (found.length > 0) {
     found.forEach((element) => {
-     
 
-      element.object.userData.documentId &&
-        console.log(element.object.userData.documentId);
+      if (element.object.userData.documentId) {
+        console.log(element)
+        normax = (element.object.position.x - camera.position.x) / element.distance;
+        normay = (element.object.position.y - camera.position.y) / element.distance;
+        normaz = (element.object.position.z - camera.position.z) / element.distance;
+        targetPlanet = element.object.position;
+        IsNewTarget = true;
+        console.log(normax, " ", normay, " ", normaz)
+
+
+
+        //controls.update() must be called after any manual changes to the camera's transform
+        //camera.position.set( 0, 20, 100 );
+      }
+
+
+
     });
   }
 });
