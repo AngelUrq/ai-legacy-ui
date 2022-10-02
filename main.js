@@ -2,7 +2,7 @@ import "./style.css";
 import * as THREE from "three";
 import config from "./db.json";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import planetPoint from './planetVector3.json';
+import planetPoint from "./planetVector3.json";
 
 import {
   createPlanet,
@@ -33,7 +33,7 @@ const textures = [
 ];
 const planets = [];
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 
 const sizes = {
   width: window.innerWidth,
@@ -41,6 +41,7 @@ const sizes = {
 };
 
 renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
@@ -59,11 +60,15 @@ let normaz;
 let IsNewTarget = false;
 let targetPlanet;
 controls.target.set(0, 0, 0);
-camera.position.set(0, 20, 100);
+camera.position.set(100, 200, 500);
 controls.update();
 
-const ambientLight = new THREE.AmbientLight(0x333333);
+const ambientLight = new THREE.AmbientLight(0x333333, 0.8);
 scene.add(ambientLight);
+
+const mainLight = new THREE.DirectionalLight(0x333333, 4);
+mainLight.position.set(100, -100, 500);
+scene.add(mainLight);
 
 const cubeTextureLoader = new THREE.CubeTextureLoader();
 scene.background = cubeTextureLoader.load([
@@ -131,8 +136,8 @@ function animate() {
     );
     const distance = Math.sqrt(
       Math.pow(targetPlanet.x - camera.position.x, 2) +
-      Math.pow(targetPlanet.y - camera.position.y, 2) +
-      Math.pow(targetPlanet.z - camera.position.z, 2)
+        Math.pow(targetPlanet.y - camera.position.y, 2) +
+        Math.pow(targetPlanet.z - camera.position.z, 2)
     );
 
     if (distance < 200) {
@@ -177,14 +182,14 @@ window.addEventListener("click", (event) => {
 
   clickMouse.x =
     ((event - canvasBounds.left) / (canvasBounds.right - canvasBounds.left)) *
-    2 -
+      2 -
     1;
   clickMouse.y =
     -(
       (event.clientY - canvasBounds.top) /
       (canvasBounds.bottom - canvasBounds.top)
     ) *
-    2 +
+      2 +
     1;
 
   raycaster.setFromCamera(
@@ -277,21 +282,21 @@ searchButton.onclick = function () {
         if (minDistanceDoc.value > distances[i].value)
           minDistanceDoc = distances[i];
       }
-      const newSearchPosition = getNodePositionById(minDistanceDoc.documentId, planets)
+      const newSearchPosition = getNodePositionById(
+        minDistanceDoc.documentId,
+        planets
+      );
       // Move camera to node with id (minDistanceDoc.documentId)
       targetPlanet = newSearchPosition;
 
       const distance = Math.sqrt(
         Math.pow(targetPlanet.x - camera.position.x, 2) +
-        Math.pow(targetPlanet.y - camera.position.y, 2) +
-        Math.pow(targetPlanet.z - camera.position.z, 2)
+          Math.pow(targetPlanet.y - camera.position.y, 2) +
+          Math.pow(targetPlanet.z - camera.position.z, 2)
       );
-      normax =
-        (newSearchPosition.x - camera.position.x) / distance;
-      normay =
-        (newSearchPosition.y - camera.position.y) / distance;
-      normaz =
-        (newSearchPosition.z - camera.position.z) / distance;
+      normax = (newSearchPosition.x - camera.position.x) / distance;
+      normay = (newSearchPosition.y - camera.position.y) / distance;
+      normaz = (newSearchPosition.z - camera.position.z) / distance;
       IsNewTarget = true;
     });
   });
