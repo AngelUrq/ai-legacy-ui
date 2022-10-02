@@ -31,6 +31,11 @@ form {
   border-radius: 10px;
   width: 30%;
   font-size: 1.1rem;
+  padding: 5px;
+}
+
+input[type="text"] {
+  font-size: 1.1rem;
 }
 
 #search-button {
