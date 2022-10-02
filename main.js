@@ -1,6 +1,7 @@
 import "./style.css";
 import * as THREE from "three";
 import config from "./db.json";
+import planetPoint from './planetVector3.json'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import { createPlanet, getNodePositionById, getRandom, isPlanetPainted } from "./helpers";
@@ -70,11 +71,12 @@ const textureLoader = new THREE.TextureLoader();
 
 const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
 const documents = config.documents;
-
+const planetPoints = planetPoint.points;
+console.log(planetPoints)
 let points = [];
 
 for (let index = 0; index < documents.length; index++) {
-  const planet = createPlanet(textures, textureLoader);
+  const planet = createPlanet(textures, textureLoader, planetPoints[index]);
   planet.mesh.userData.scores = documents[index].scores;
   planet.mesh.userData.documentId = documents[index].id;
 
@@ -110,10 +112,8 @@ function animate() {
   if (IsNewTarget) {
     camera.lookAt(targetPlanet)
     camera.position.set(camera.position.x + normax*10, camera.position.y + normay*10, camera.position.z + normaz*10)
-    //console.log(camera.position.x)
-    //console.log(targetPlanet.x)
+   
     const distance =  Math.sqrt( Math.pow((targetPlanet.x-camera.position.x), 2) + Math.pow((targetPlanet.y-camera.position.y), 2) + Math.pow(((targetPlanet.z-camera.position.z)), 2) );
-    console.log(distance)
     if (distance < 200) {
       IsNewTarget = false;
       controls.target.set(targetPlanet.x, targetPlanet.y, targetPlanet.z + 0.01);
