@@ -2,7 +2,7 @@ import "./style.css";
 import * as THREE from "three";
 import config from "./db.json";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import planetPoint from './planetVector3.json'
+import planetPoint from './planetVector3.json';
 
 import {
   createPlanet,
@@ -80,7 +80,6 @@ const textureLoader = new THREE.TextureLoader();
 const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
 const documents = config.documents;
 const planetPoints = planetPoint.points;
-console.log(planetPoints)
 let points = [];
 
 for (let index = 0; index < documents.length; index++) {
@@ -132,8 +131,8 @@ function animate() {
     );
     const distance = Math.sqrt(
       Math.pow(targetPlanet.x - camera.position.x, 2) +
-        Math.pow(targetPlanet.y - camera.position.y, 2) +
-        Math.pow(targetPlanet.z - camera.position.z, 2)
+      Math.pow(targetPlanet.y - camera.position.y, 2) +
+      Math.pow(targetPlanet.z - camera.position.z, 2)
     );
 
     if (distance < 200) {
@@ -178,14 +177,14 @@ window.addEventListener("click", (event) => {
 
   clickMouse.x =
     ((event - canvasBounds.left) / (canvasBounds.right - canvasBounds.left)) *
-      2 -
+    2 -
     1;
   clickMouse.y =
     -(
       (event.clientY - canvasBounds.top) /
       (canvasBounds.bottom - canvasBounds.top)
     ) *
-      2 +
+    2 +
     1;
 
   raycaster.setFromCamera(
@@ -200,7 +199,6 @@ window.addEventListener("click", (event) => {
   if (found.length > 0) {
     found.forEach((element) => {
       if (element.object.userData.documentId) {
-        console.log(element);
         normax =
           (element.object.position.x - camera.position.x) / element.distance;
         normay =
@@ -279,9 +277,22 @@ searchButton.onclick = function () {
         if (minDistanceDoc.value > distances[i].value)
           minDistanceDoc = distances[i];
       }
-
+      const newSearchPosition = getNodePositionById(minDistanceDoc.documentId, planets)
       // Move camera to node with id (minDistanceDoc.documentId)
-      console.log(minDistanceDoc);
+      targetPlanet = newSearchPosition;
+
+      const distance = Math.sqrt(
+        Math.pow(targetPlanet.x - camera.position.x, 2) +
+        Math.pow(targetPlanet.y - camera.position.y, 2) +
+        Math.pow(targetPlanet.z - camera.position.z, 2)
+      );
+      normax =
+        (newSearchPosition.x - camera.position.x) / distance;
+      normay =
+        (newSearchPosition.y - camera.position.y) / distance;
+      normaz =
+        (newSearchPosition.z - camera.position.z) / distance;
+      IsNewTarget = true;
     });
   });
 };
