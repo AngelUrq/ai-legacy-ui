@@ -9,12 +9,12 @@ export function createPlanet(texture, textureLoader, position) {
   });
   const mesh = new THREE.Mesh(geo, mat);
   const obj = new THREE.Object3D();
-    
+
   obj.add(mesh);
 
-  mesh.position.x = position[0]*500;
-  mesh.position.y = position[1]*500;
-  mesh.position.z = position[2]*500;
+  mesh.position.x = position[0] * 1500;
+  mesh.position.y = position[1] * 1500;
+  mesh.position.z = position[2] * 1500;
 
   return { mesh, obj };
 }
@@ -38,9 +38,7 @@ export function isPlanetPainted(documentID, nodes) {
 
 export function eucDistance(a, b) {
   return (
-    a
-      .map((x, i) => Math.abs(x - b[i]) ** 2)
-      .reduce((sum, now) => sum + now) **
+    a.map((x, i) => Math.abs(x - b[i]) ** 2).reduce((sum, now) => sum + now) **
     (1 / 2)
   );
 }

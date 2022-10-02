@@ -19,6 +19,12 @@ import saturnTexture from "./img/saturn.jpg";
 import uranusTexture from "./img/uranus.jpg";
 import neptuneTexture from "./img/neptune.jpg";
 import plutoTexture from "./img/pluto.jpg";
+import ceresTexture from "./img/ceres.jpg";
+import erisTexture from "./img/eris.jpg";
+import haumeaTexture from "./img/haumea.jpg";
+import makemakeTexture from "./img/makemake.jpg";
+import neptureTexture from "./img/nepture.jpg";
+import venus2Texture from "./img/venus2.jpg";
 
 const textures = [
   mercuryTexture,
@@ -29,6 +35,12 @@ const textures = [
   uranusTexture,
   neptuneTexture,
   plutoTexture,
+  ceresTexture,
+  erisTexture,
+  haumeaTexture,
+  makemakeTexture,
+  neptureTexture,
+  venus2Texture,
 ];
 const planets = [];
 
@@ -59,7 +71,7 @@ let normaz;
 let IsNewTarget = false;
 let targetPlanet;
 controls.target.set(0, 0, 0);
-camera.position.set(100, 200, 500);
+camera.position.set(814, 855, 1355);
 controls.update();
 
 const ambientLight = new THREE.AmbientLight(0x333333, 0.8);
@@ -81,7 +93,7 @@ scene.background = cubeTextureLoader.load([
 
 const textureLoader = new THREE.TextureLoader();
 
-const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0x333333 });
 const documents = config.documents;
 const planetPoints = planetPoint.points;
 let points = [];
@@ -105,7 +117,7 @@ for (let j = 0; j < planets.length; j++) {
   points.push(planets[j].mesh.position);
 
   for (let k = 0; k < scores.length; k++) {
-    if (scores[k].score < 0.3) {
+    if (scores[k].score < 0.6) {
       const point = getNodePositionById(scores[k].id, planets);
       points.push(point);
     }
@@ -235,7 +247,7 @@ window.addEventListener("click", (event) => {
         <h2>${paperData.title}</h2>
         <p><strong>Authors:</strong>&nbsp;${authors}</p>
         <p><strong>Keywords:</strong>&nbsp;${paperData.keywords}</p>
-        <p><strong>Summary:</strong>&nbsp;${paperData.summary}</p>
+        <p><strong>Summary:</strong>&nbsp;${paperData.summary}...</p>
         <div class="download-container">
           <button class="btn-download" onclick="window.open('${url}', '_blank');">See</button>
         </div>
@@ -257,7 +269,21 @@ const API_URL = "http://192.168.23.78:5000";
 
 const searchButton = document.getElementById("search-button");
 searchButton.onclick = function () {
-  const query = document.getElementById("searcher").value;
+  const newSearchPosition = getNodePositionById(19900004638, planets);
+
+  targetPlanet = newSearchPosition;
+
+  const distance = Math.sqrt(
+    Math.pow(targetPlanet.x - camera.position.x, 2) +
+      Math.pow(targetPlanet.y - camera.position.y, 2) +
+      Math.pow(targetPlanet.z - camera.position.z, 2)
+  );
+  normax = (newSearchPosition.x - camera.position.x) / distance;
+  normay = (newSearchPosition.y - camera.position.y) / distance;
+  normaz = (newSearchPosition.z - camera.position.z) / distance;
+  IsNewTarget = true;
+
+  /* const query = document.getElementById("searcher").value;
   let data = { query };
   let distances = [];
 
@@ -298,5 +324,5 @@ searchButton.onclick = function () {
       normaz = (newSearchPosition.z - camera.position.z) / distance;
       IsNewTarget = true;
     });
-  });
+  });*/
 };

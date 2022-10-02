@@ -29,9 +29,10 @@ form {
 
 #searcher {
   border-radius: 10px;
-  width: 30%;
+  width: 20%;
   font-size: 1.1rem;
   padding: 5px;
+  font-family: "Space Mono", monospace;
 }
 
 input[type="text"] {
