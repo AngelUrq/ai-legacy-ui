@@ -10,8 +10,7 @@ import {
   getNodePositionById,
   getRandom,
 } from "./helpers";
-import starsTexture from "./img/sky.jpg";
-import sunTexture from "./img/sun.jpg";
+import starsTexture from "./img/stars.jpg";
 import mercuryTexture from "./img/mercury.jpg";
 import venusTexture from ".//img/venus.jpg";
 import marsTexture from "./img/mars.jpg";
