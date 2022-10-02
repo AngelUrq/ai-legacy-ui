@@ -139,7 +139,7 @@ function animate() {
       camera.position.set(
         camera.position.x,
         camera.position.y,
-        camera.position.z - 200
+        camera.position.z
       );
       camera.lookAt(targetPlanet);
       targetPlanet = null;
@@ -205,31 +205,33 @@ window.addEventListener("click", (event) => {
       }
     });
 
-    const paperData = found[0].object.userData;
-    modal.style.display = "block";
+    setTimeout(() => {
+      const paperData = found[0].object.userData;
+      modal.style.display = "block";
 
-    let paperContent = document.getElementById("paper-content");
-    let authors = "";
-    let url = "";
+      let paperContent = document.getElementById("paper-content");
+      let authors = "";
+      let url = "";
 
-    paperData.authorAffiliations.forEach(
-      (authorAffiliation) =>
-        (authors += `${authorAffiliation.meta.author.name},`)
-    );
-    authors = authors.substring(0, authors.length - 1);
+      paperData.authorAffiliations.forEach(
+        (authorAffiliation) =>
+          (authors += `${authorAffiliation.meta.author.name},`)
+      );
+      authors = authors.substring(0, authors.length - 1);
 
-    if (paperData.downloads.length > 0)
-      url = DOWNLOAD_URL + paperData.downloads[0].links.original;
+      if (paperData.downloads.length > 0)
+        url = DOWNLOAD_URL + paperData.downloads[0].links.original;
 
-    paperContent.innerHTML = `
-      <h2>${paperData.title}</h2>
-      <p><strong>Authors:</strong>&nbsp;${authors}</p>
-      <p><strong>Keywords:</strong>&nbsp;${paperData.keywords}</p>
-      <p><strong>Summary:</strong>&nbsp;${paperData.summary}</p>
-      <div class="download-container">
-        <button class="btn-download" onclick="window.open('${url}', '_blank');">See</button>
-      </div>
-    `;
+      paperContent.innerHTML = `
+        <h2>${paperData.title}</h2>
+        <p><strong>Authors:</strong>&nbsp;${authors}</p>
+        <p><strong>Keywords:</strong>&nbsp;${paperData.keywords}</p>
+        <p><strong>Summary:</strong>&nbsp;${paperData.summary}</p>
+        <div class="download-container">
+          <button class="btn-download" onclick="window.open('${url}', '_blank');">See</button>
+        </div>
+      `;
+    }, 1000 * 1)
   }
 });
 
