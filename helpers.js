@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export function createPlanet(texture, textureLoader,pdfData, position) {
+export function createPlanet(texture, textureLoader, pdfData, position) {
   const size = getRandom(5, 30);
 
   const geo = new THREE.SphereGeometry(size, 30, 30);
@@ -9,7 +9,7 @@ export function createPlanet(texture, textureLoader,pdfData, position) {
   });
   const mesh = new THREE.Mesh(geo, mat);
   const obj = new THREE.Object3D();
-  
+
   if (pdfData) {
     mesh.userData.title = pdfData.documents.title;
     mesh.userData.summary = pdfData.documents.summary;
@@ -19,9 +19,9 @@ export function createPlanet(texture, textureLoader,pdfData, position) {
   }
   obj.add(mesh);
 
-  mesh.position.x = getRandom(-500,500);
-  mesh.position.y = getRandom(-500,500);
-  mesh.position.z = getRandom(-500,500);
+  mesh.position.x = getRandom(-500, 500);
+  mesh.position.y = getRandom(-500, 500);
+  mesh.position.z = getRandom(-500, 500);
 
   return { mesh, obj };
 }
@@ -31,14 +31,14 @@ export function getRandom(min, max) {
 }
 
 export function getNodePositionById(documentId, nodes) {
-  return nodes.filter((node) => node.mesh.userData.documentId == documentId)[0].mesh.position;
+  return nodes.filter((node) => node.mesh.userData.documentId == documentId)[0]
+    .mesh.position;
 }
 
-export function isPlanetPainted(documentID, nodes){
-    nodes.forEach(node => {
-        if ( node.mesh.userData.documentId == documentID ) {
-            return node;
-        }
-        
-    });
+export function isPlanetPainted(documentID, nodes) {
+  nodes.forEach((node) => {
+    if (node.mesh.userData.documentId == documentID) {
+      return node;
+    }
+  });
 }

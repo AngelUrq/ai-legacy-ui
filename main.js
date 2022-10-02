@@ -1,9 +1,9 @@
 import "./style.css";
 import * as THREE from "three";
 import config from "./db.json";
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-import { createPlanet, getNodePositionById, getRandom, isPlanetPainted } from "./helpers";
+import { createPlanet, getNodePositionById, getRandom } from "./helpers";
 import starsTexture from "./img/sky.jpg";
 import sunTexture from "./img/sun.jpg";
 import mercuryTexture from "./img/mercury.jpg";
@@ -39,12 +39,16 @@ document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+const camera = new THREE.PerspectiveCamera(
+  45,
+  window.innerWidth / window.innerHeight,
+  1,
+  10000
+);
 
-const controls = new OrbitControls( camera, renderer.domElement );
-controls.target.set(0,0,0);
-//controls.update() must be called after any manual changes to the camera's transform
-camera.position.set( 0, 20, 100 );
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 0, 0);
+camera.position.set(0, 20, 100);
 controls.update();
 
 const ambientLight = new THREE.AmbientLight(0x333333);
@@ -75,10 +79,14 @@ let points = [];
 for (let index = 0; index < documents.length; index++) {
   const planet = createPlanet(textures, textureLoader);
   planet.mesh.userData.scores = documents[index].scores;
-  planet.mesh.userData.documentId=  documents[index].id;
+  planet.mesh.userData.documentId = documents[index].id;
+  planet.mesh.userData.title = documents[index].title;
+  planet.mesh.userData.keywords = documents[index].keywords;
+  planet.mesh.userData.summary = documents[index].summary;
+  planet.mesh.userData.authorAffiliations = documents[index].authorAffiliations;
+  planet.mesh.userData.downloads = documents[index].downloads;
 
   planets.push(planet);
-  //console.log(planet.mesh.userData.title);
   scene.add(planet.obj);
 }
 
@@ -100,14 +108,13 @@ for (let j = 0; j < planets.length; j++) {
 }
 
 const pointLight = new THREE.PointLight(0xffffff, 2, 500);
-pointLight.position.set(300,0,0)
+pointLight.position.set(300, 0, 0);
 scene.add(pointLight);
 
 function animate() {
   planets.forEach((planet) => {
     planet.mesh.rotateY(getRandom(1, 10) / 1000);
   });
-
 
   renderer.render(scene, camera);
 }
@@ -116,25 +123,76 @@ renderer.setAnimationLoop(animate);
 const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
 
+/* Modal */
+var modal = document.getElementById("info-modal");
+var span = document.getElementsByClassName("close")[0];
+
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+const DOWNLOAD_URL = "https://ntrs.nasa.gov";
+
 window.addEventListener("click", (event) => {
   event.preventDefault();
+
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+
   var canvasBounds = renderer.domElement.getBoundingClientRect();
 
-  clickMouse.x = ( ( event - canvasBounds.left ) / ( canvasBounds.right - canvasBounds.left ) ) * 2 - 1;
-  clickMouse.y = - ( ( event.clientY - canvasBounds.top ) / ( canvasBounds.bottom - canvasBounds.top) ) * 2 + 1;
+  clickMouse.x =
+    ((event - canvasBounds.left) / (canvasBounds.right - canvasBounds.left)) *
+      2 -
+    1;
+  clickMouse.y =
+    -(
+      (event.clientY - canvasBounds.top) /
+      (canvasBounds.bottom - canvasBounds.top)
+    ) *
+      2 +
+    1;
 
-  raycaster.setFromCamera(  {
-    x:  2*event.offsetX / event.target.clientWidth - 1,
-    y: -2*event.offsetY / event.target.clientHeight + 1 }, camera );
+  raycaster.setFromCamera(
+    {
+      x: (2 * event.offsetX) / event.target.clientWidth - 1,
+      y: (-2 * event.offsetY) / event.target.clientHeight + 1,
+    },
+    camera
+  );
   const found = raycaster.intersectObjects(scene.children);
 
   if (found.length > 0) {
     found.forEach((element) => {
-     
-
-      element.object.userData.documentId &&
-        console.log(element.object.userData.documentId);
+      element.object.userData.documentId;
     });
+
+    const paperData = found[0].object.userData;
+    modal.style.display = "block";
+
+    let paperContent = document.getElementById("paper-content");
+    let authors = "";
+    let url = "";
+
+    paperData.authorAffiliations.forEach(
+      (authorAffiliation) =>
+        (authors += `${authorAffiliation.meta.author.name},`)
+    );
+    authors = authors.substring(0, authors.length - 1);
+
+    if (paperData.downloads.length > 0)
+      url = DOWNLOAD_URL + paperData.downloads[0].links.original;
+
+    paperContent.innerHTML = `
+      <h2>${paperData.title}</h2>
+      <p><strong>Authors:</strong>&nbsp;${authors}</p>
+      <p><strong>Keywords:</strong>&nbsp;${paperData.keywords}</p>
+      <p><strong>Summary:</strong>&nbsp;${paperData.summary}</p>
+      <div class="download-container">
+        <button class="btn-download" onclick="window.open('${url}', '_blank');">See</button>
+      </div>
+    `;
   }
 });
 
@@ -146,28 +204,20 @@ window.addEventListener("resize", function () {
   renderer.setSize(sizes.width, sizes.height);
 });
 
-// Get the modal
-var modal = document.getElementById("myModal");
+/* Query */
+const API_URL = "http://192.168.23.74:5000";
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+const searchButton = document.getElementById("search-button");
+searchButton.onclick = function () {
+  const query = document.getElementById("searcher").value;
+  console.log(query);
+  let data = { query };
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+  fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  }).then((res) => {
+    res.json().then((embeddings) => console.log(embeddings));
+  });
 };
