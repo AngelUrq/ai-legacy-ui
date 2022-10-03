@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/img/icon.ico" />
+    <link
+      rel="stylesheet"
+      href="/static/font-awesome-4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Legacy App</title>
+  </head>
+
+  <body>
+    <div class="searcher-container">
+      <img id="logo" src="/img/logo.png" alt="Space legacy logo" />
+
+      <form id="searcher-form">
+        <input type="text" id="searcher" placeholder="Enter a phrase" />
+        <button id="search-button">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </div>
+
+    <div id="info-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="paper-content"></div>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
